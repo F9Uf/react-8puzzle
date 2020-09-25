@@ -1,7 +1,10 @@
 .board {
   margin-top: 10px;
-  background-color: tomato;
-  display: block;
+  /* background-color: tomato; */
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: auto auto auto;
   width: 100%;
   height: auto;
 }
