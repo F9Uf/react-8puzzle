@@ -1,10 +1,11 @@
 .App {
     background-color: cadetblue;
     display: block;
-    margin: auto auto;
-    width: 100%;
+    margin: 0 auto;
+    padding: 10px 10px;
+    width: calc(100vw - 20px);
     max-width: 100vh;
-    height: 100vh;
+    height: calc(100vh - 20px);
     max-height: 100vw;
     position: relative;
     top: 50vh;

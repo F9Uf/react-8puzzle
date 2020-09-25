@@ -1,0 +1,7 @@
+.board {
+  margin-top: 10px;
+  background-color: tomato;
+  display: block;
+  width: 100%;
+  height: auto;
+}
