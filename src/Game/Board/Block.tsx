@@ -5,6 +5,7 @@ interface blockProps {
   value?: String;
   width?: number;
   height?: number;
+  onClick?: (event: any) => void;
 }
 
 function Block(props: blockProps) {
@@ -15,6 +16,7 @@ function Block(props: blockProps) {
         width: props.width,
         height: props.height
       }}
+      onClick={props.onClick}
     >
       {props.value}
     </div>
