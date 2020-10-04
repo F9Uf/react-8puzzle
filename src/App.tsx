@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Board from './Game/Board';
@@ -10,10 +10,15 @@ const puzzle = [
   ['5', '8', '6']
 ]
 function App() {
+  const [moveCount, setMoveCount] = useState(0);
+
   return (
     <div className="App">
-      <Pannel />
-      <Board puzzleBlock={puzzle}/>
+      <Pannel moveCount={moveCount} />
+      <Board
+        puzzleBlock={puzzle}
+        onMove={() => setMoveCount(moveCount + 1)}
+      />
     </div>
   );
 }

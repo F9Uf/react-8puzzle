@@ -1,11 +1,15 @@
 import React from 'react';
 import './index.css'
 
-function Pannel() {
+interface pannelProps {
+  moveCount: number;
+}
+
+function Pannel(props: pannelProps) {
   return (
     <div className="pannel">
       <span>
-        MOVE100
+        {props.moveCount}
       </span>
     </div>
   );
