@@ -81,7 +81,11 @@ function Board(props: puzzleProps) {
     }
 
     window.addEventListener('resize', handleResize)
-  })
+  });
+
+  useEffect(() => {
+    setPuzzle(props.puzzleBlock);
+  }, [props.puzzleBlock]);
 
   return (
     <div

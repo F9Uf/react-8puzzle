@@ -5,14 +5,25 @@ import './App.css';
 import Board from './Game/Board';
 import Pannel from './Game/Pannel'
 
-const puzzle = [
-  [' ', '3', '4'],
-  ['1', '7', '2'],
-  ['5', '8', '6']
-]
+function randomPuzzle(): string[][] {
+  return [
+    [' ', '3', '4'],
+    ['1', '7', '2'],
+    ['5', '8', '6']
+  ];
+}
+
 function App() {
   const [moveCount, setMoveCount] = useState(0);
+  const [puzzle, setPuzzle] = useState(randomPuzzle);
   const [isWin, setIsWin] = useState(false);
+
+  function tryAgain(): void {
+    setIsWin(false);
+    setMoveCount(0);
+    setPuzzle(randomPuzzle());
+    return;
+  }
 
   return (
     <div className="App">
@@ -25,7 +36,11 @@ function App() {
       {isWin &&
         <Alert 
           moveCount={moveCount}
-          onTryAgain={() => console.log('try again')}
+          onTryAgain={() => {
+            tryAgain();
+            console.log('try again');
+          }
+        }
         />
       }
     </div>
