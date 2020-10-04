@@ -29,33 +29,43 @@ function Board(props: puzzleProps) {
   }
 
   function movePuzzle(row: number, col: number): void {
-      const dir = moveDirection(row, col);
-      if (dir === 'none') return;
+    const dir = moveDirection(row, col);
+    if (dir === 'none') return;
 
-      const temp = [...puzzle];
+    const temp = [...puzzle];
 
-      console.log('move: ', dir);
+    console.log('move: ', dir);
 
-      if (dir === 'top') {
-        [temp[row - 1][col], temp[row][col]] = [temp[row][col], temp[row - 1][col]];
-      } else if (dir === 'bottom') {
-        [temp[row + 1][col], temp[row][col]] = [temp[row][col], temp[row + 1][col]];
-      } else if (dir === 'left') {
-        [temp[row][col - 1], temp[row][col]] = [temp[row][col], temp[row][col - 1]];
-      } else if (dir === 'right') {
-        [temp[row][col + 1], temp[row][col]] = [temp[row][col], temp[row][col + 1]];
-      }
+    if (dir === 'top') {
+      [temp[row - 1][col], temp[row][col]] = [temp[row][col], temp[row - 1][col]];
+    } else if (dir === 'bottom') {
+      [temp[row + 1][col], temp[row][col]] = [temp[row][col], temp[row + 1][col]];
+    } else if (dir === 'left') {
+      [temp[row][col - 1], temp[row][col]] = [temp[row][col], temp[row][col - 1]];
+    } else if (dir === 'right') {
+      [temp[row][col + 1], temp[row][col]] = [temp[row][col], temp[row][col + 1]];
+    }
 
-      setPuzzle(temp);
-      props.onMove(1);
+    setPuzzle(temp);
+    props.onMove(1);
   }
 
   function moveDirection(row: number, col: number): MoveDir {
+    if (isWin()) return 'none';
     if (row !== 0 && puzzle[row - 1][col].trim() === '') return 'top';
     if (row < puzzle.length - 1 && puzzle[row + 1][col].trim() === '') return 'bottom';
     if (col !== 0 && puzzle[row][col - 1].trim() === '') return 'left';
     if (col < puzzle[row].length - 1 && puzzle[row][col + 1].trim() === '') return 'right';
     return 'none'
+  }
+
+  function isWin(): boolean {
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle[i].length; j++) {
+        if (puzzle[i][j] !== DEFAULT_PUZZLE[i][j]) return false
+      }
+    }
+    return true;
   }
 
   useEffect(() => {
