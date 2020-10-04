@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Alert from './Alert';
 import './App.css';
 
 import Board from './Game/Board';
@@ -11,6 +12,7 @@ const puzzle = [
 ]
 function App() {
   const [moveCount, setMoveCount] = useState(0);
+  const [isWin, setIsWin] = useState(false);
 
   return (
     <div className="App">
@@ -18,7 +20,14 @@ function App() {
       <Board
         puzzleBlock={puzzle}
         onMove={() => setMoveCount(moveCount + 1)}
+        onWin={(win) => setIsWin(win)}
       />
+      {isWin &&
+        <Alert 
+          moveCount={moveCount}
+          onTryAgain={() => console.log('try again')}
+        />
+      }
     </div>
   );
 }

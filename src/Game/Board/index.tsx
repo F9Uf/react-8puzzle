@@ -11,6 +11,7 @@ const DEFAULT_PUZZLE = [
 interface puzzleProps {
   puzzleBlock: string[][];
   onMove: (count: number) => void;
+  onWin: (win: boolean) => void;
 }
 
 type MoveDir = 'left' | 'right' | 'top' | 'bottom' | 'none';
@@ -48,6 +49,7 @@ function Board(props: puzzleProps) {
 
     setPuzzle(temp);
     props.onMove(1);
+    props.onWin(isWin());
   }
 
   function moveDirection(row: number, col: number): MoveDir {
