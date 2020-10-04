@@ -1,6 +1,25 @@
 .block {
   display: block;
-  background-color: yellow;
-  border: 1px salmon solid;
-  margin: 25px 0;
+  background-color: #31989a;
+  color: honeydew;
+  font-size: 10vw;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 8px;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.block.is-empty {
+  background-color: transparent;
 }

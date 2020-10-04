@@ -10,13 +10,15 @@ interface blockProps {
 function Block(props: blockProps) {
   return (
     <div
-      className="block"
+      className={`block ${props.value === ' ' || props.value === '' ? 'is-empty' : ''}`}
       style={{
         width: props.width,
         height: props.height
       }}
     >
-      {props.value}
+      <span className="text">
+        {props.value}
+      </span>
     </div>
   );
 }

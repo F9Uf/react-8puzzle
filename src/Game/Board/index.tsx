@@ -14,11 +14,11 @@ function Board() {
   const [height, setHeight] = useState(computedSize(window.innerWidth, window.innerHeight));
 
   function computedSize(width: number, height: number): number {
-    const padding = 50;
+    const padding = 15;
     if (width < height) {
       return ((width - 20) / 3) - padding;
     }
-    return ((height - 20) / 3) - padding;
+    return ((height - 20) / 3) - padding - 5;
   }
 
   useEffect(() => {
@@ -35,7 +35,13 @@ function Board() {
   })
 
   return (
-    <div className="board">
+    <div
+      className="board"
+      style={{
+        gridTemplateRows: `${width}px ${width}px ${width}px`,
+        gridTemplateColumns: `${width}px ${width}px ${width}px`
+      }}
+    >
       {puzzle.map((row, rIndex) => {
         return row.map((col, cIndex) => {
           return <Block
