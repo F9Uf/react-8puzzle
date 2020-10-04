@@ -1,8 +1,7 @@
 .block {
-  display: block;
   background-color: #31989a;
   color: honeydew;
-  font-size: 10vw;
+  font-size: 8vw;
   font-weight: 300;
   cursor: pointer;
   border-radius: 8px;

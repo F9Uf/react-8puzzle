@@ -16,9 +16,7 @@ function Block(props: blockProps) {
         height: props.height
       }}
     >
-      <span className="text">
-        {props.value}
-      </span>
+      {props.value}
     </div>
   );
 }
