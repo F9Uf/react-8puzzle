@@ -5,12 +5,23 @@ import './App.css';
 import Board from './Game/Board';
 import Pannel from './Game/Pannel'
 
+
 function randomPuzzle(): string[][] {
-  return [
-    [' ', '3', '4'],
-    ['1', '7', '2'],
-    ['5', '8', '6']
-  ];
+  const MAX_ROW = 3;
+  const MAX_COL = 3;
+  const numberArray = ['1', '2', '3', '4', '5', '6', '7', '8', ' '];
+  const shuffleArray = numberArray.sort(() => Math.random() - 0.5);
+  let tempArr: string[][] = [];
+
+  for (let i = 0; i < MAX_ROW; i++) {
+    let temp = []
+    for (let j = 0; j < MAX_COL; j++) {
+      temp[j] = shuffleArray[(i * MAX_COL) + j];
+    }
+    tempArr[i] = temp;
+  }
+
+  return tempArr;
 }
 
 function App() {
