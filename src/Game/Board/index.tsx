@@ -69,13 +69,10 @@ function Board(props: puzzleProps) {
   }
 
   function moveFromDirection(dir: MoveDir) {
-    row_loop:
     for (let i = 0; i < puzzle.length; i++) {
       for (let j = 0; j < puzzle[i].length; j++) {
         if (moveDirection(i, j) === dir) {
-          console.log(`row ${i}, col ${j}`);
-          movePuzzle(i, j);
-          break row_loop;
+          return movePuzzle(i, j);
         }
       }
     }
@@ -96,7 +93,7 @@ function Board(props: puzzleProps) {
 
   useEffect(() => {
     function handleKeyPress(event: KeyboardEvent) {
-      event.preventDefault();
+      // event.preventDefault();
       const availableKeyboardEvent = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
       const availableDirection: MoveDir[] = ['top', 'bottom', 'left', 'right'];
       const keyIndex = availableKeyboardEvent.indexOf(event.key);

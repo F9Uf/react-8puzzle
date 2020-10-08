@@ -41,7 +41,10 @@ function App() {
       <Pannel moveCount={moveCount} />
       <Board
         puzzleBlock={puzzle}
-        onMove={() => setMoveCount(moveCount + 1)}
+        onMove={(count) => {
+          console.log(moveCount);
+          setMoveCount(prevMoveCount => prevMoveCount + count)
+        }}
         onWin={(win) => setIsWin(win)}
       />
       {isWin &&
