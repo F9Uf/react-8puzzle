@@ -35,8 +35,6 @@ function Board(props: puzzleProps) {
 
     const temp = [...puzzle];
 
-    console.log('move: ', dir);
-
     if (dir === 'top') {
       [temp[row - 1][col], temp[row][col]] = [temp[row][col], temp[row - 1][col]];
     } else if (dir === 'bottom') {
@@ -70,6 +68,17 @@ function Board(props: puzzleProps) {
     return true;
   }
 
+  function moveFromDirection(dir: MoveDir) {
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle[i].length; j++) {
+        if (moveDirection(i, j) === dir) {
+          return movePuzzle(i, j);
+        }
+      }
+    }
+    return;
+  }
+
   useEffect(() => {
     function handleResize() {
       const windowWidth = window.innerWidth;
@@ -79,9 +88,23 @@ function Board(props: puzzleProps) {
       setWidth(boxSize);
       setHeight(boxSize);
     }
-
     window.addEventListener('resize', handleResize)
   });
+
+  useEffect(() => {
+    function handleKeyPress(event: KeyboardEvent) {
+      // event.preventDefault();
+      const availableKeyboardEvent = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+      const availableDirection: MoveDir[] = ['top', 'bottom', 'left', 'right'];
+      const keyIndex = availableKeyboardEvent.indexOf(event.key);
+  
+      if (keyIndex < 0) return;
+      return moveFromDirection(availableDirection[keyIndex]);
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     setPuzzle(props.puzzleBlock);
