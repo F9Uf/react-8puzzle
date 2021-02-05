@@ -7,3 +7,7 @@
 https://react-8puzzle.netlify.app/
 
 <img src="preview.png" />
+
+### Todo
+- [ ] Keyboard control
+- [ ] fix generate puzzle pattern
